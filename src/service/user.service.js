@@ -5,14 +5,14 @@ class UserService {
     const res = await User.create({ username, password });
     return res.dataValues;
   }
-  async getUserInfo({ id, username, password, is_admin }) {
+  async getUserInfo({ id, username, password }) {
     const res = await User.findOne({
-      attributes: ["id", "username", "password", "is_admin"],
+      attributes: ["id", "username", "password"],
       where: arguments[0],
     });
     return res;
   }
-  async updateUserInfo(id, { username, password, is_admin }) {
+  async updateUserInfo(id, { username, password }) {
     const res = await User.update(arguments[1], {
       where: { id },
     });

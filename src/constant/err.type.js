@@ -51,40 +51,50 @@ module.exports = {
     message: "不支持的文件格式",
     result: "",
   },
-  goodsParameterError: {
-    code: 10203,
-    message: "商品参数格式错误",
-    result: "",
-  },
-  addGoodsError: {
-    code: 10204,
-    message: "添加商品出错",
-    result: "",
-  },
-  updateGoodsError: {
-    code: 10205,
-    message: "修改商品信息出错",
-    result: "",
-  },
-  deleteGoodsError: {
-    code: 10206,
-    message: "删除商品出错",
-    result: "",
-  },
-  queryGoodsListError: {
-    code: 10207,
-    message: "查询商品列表出错",
-    result: "",
-  },
 
-  cartParameterError: {
-    code: 10301,
-    message: "购物车参数出错",
+  tagNameIsRequired: {
+    code: 10203,
+    message: "标签名不能为空",
     result: "",
   },
-  addCartError: {
+  addTagError: {
+    code: 10204,
+    message: "添加标签出错",
+    result: "",
+  },
+  updateTagError: {
+    code: 10205,
+    message: "修改标签信息出错",
+    result: "",
+  },
+  deleteTagError: {
+    code: 10206,
+    message: "删除标签出错",
+    result: "",
+  },
+  queryTagListError: {
+    code: 10207,
+    message: "查询标签列表出错",
+    result: "",
+  },
+  idIsRequired: {
+    code: 10208,
+    message: "id不能为空",
+    result: "",
+  },
+  articleParameterError: {
+    code: 10301,
+    message: "文章参数出错",
+    result: "",
+  },
+  addArticleError: {
     code: 10302,
-    message: "添加购物车出错",
+    message: "新增文章出错",
+    result: "",
+  },
+  deleteArticleError: {
+    code: 10303,
+    message: "删除文章出错",
     result: "",
   },
 };

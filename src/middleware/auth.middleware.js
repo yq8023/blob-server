@@ -3,7 +3,6 @@ const { JWT_SECRET } = require("../config/config.default");
 const {
   tokenExpiredError,
   jsonWebTokenError,
-  notHaveAdminPermission,
 } = require("../constant/err.type");
 
 const auth = async (ctx, next) => {
@@ -30,12 +29,4 @@ const auth = async (ctx, next) => {
   await next();
 };
 
-const hasAdminPermission = async (ctx, next) => {
-  const { is_admin } = ctx.state.user;
-  if (!is_admin) {
-    return ctx.app.emit("error", notHaveAdminPermission, ctx);
-  }
-  await next();
-};
-
-module.exports = { auth, hasAdminPermission };
+module.exports = { auth };

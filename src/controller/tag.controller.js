@@ -1,23 +1,22 @@
 const path = require("path");
 
 const {
-  addGoods,
-  updateGoods,
-  deleteGoods,
-  findGoods,
-} = require("../service/goods.service");
-const {
-  addGoodsError,
-  updateGoodsError,
-  deleteGoodsError,
-  queryGoodsListError,
-} = require("../constant/err.type");
+  addTag,
+  updateTag,
+  deleteTag,
+  findTags,
+} = require("../service/tag.service");
 
 const {
+  addTagError,
+  updateTagError,
+  deleteTagError,
+  queryTagListError,
   fileUploadError,
   upSupportedFileType,
 } = require("../constant/err.type");
-class GoodsController {
+
+class TagController {
   // 可抽离通用文件上传中间件
   async upload(ctx, next) {
     const { file } = ctx.request.files;
@@ -40,45 +39,45 @@ class GoodsController {
 
   async add(ctx, next) {
     try {
-      const { updatedAt, createdAt, ...res } = await addGoods(ctx.request.body);
+      const { updatedAt, createdAt, ...res } = await addTag(ctx.request.body);
       ctx.body = {
         code: 0,
-        message: "发布商品成功",
+        message: "添加标签成功",
         result: res,
       };
     } catch (error) {
-      return ctx.app.emit("error", addGoodsError, ctx);
+      return ctx.app.emit("error", addTagError, ctx);
     }
   }
 
   async update(ctx, next) {
     try {
       const { id, ...goods } = ctx.request.body;
-      const res = await updateGoods(id, goods);
+      const res = await updateTag(id, goods);
 
       if (res) {
         ctx.body = {
           code: 0,
-          message: "商品信息修改成功",
+          message: "标签信息修改成功",
           result: res,
         };
       }
     } catch (error) {
-      return ctx.app.emit("error", updateGoodsError, ctx);
+      return ctx.app.emit("error", updateTagError, ctx);
     }
   }
 
   async remove(ctx, next) {
     try {
       const { id } = ctx.request.body;
-      const res = await deleteGoods(id);
+      const res = await deleteTag(id);
       ctx.body = {
         code: 0,
-        message: "删除商品成功",
+        message: "删除标签成功",
         result: "",
       };
     } catch (error) {
-      return ctx.app.emit("error", deleteGoodsError, ctx);
+      return ctx.app.emit("error", deleteTagError, ctx);
     }
   }
 
@@ -86,15 +85,15 @@ class GoodsController {
     try {
       // pageNum 和 pageSize
       const { pageNum = 1, pageSize = 10 } = ctx.request.query;
-      const res = await findGoods(pageNum, pageSize);
+      const res = await findTags(pageNum, pageSize);
       ctx.body = {
         code: 0,
-        message: "获取商品列表成功",
+        message: "获取标签列表成功",
         result: res,
       };
     } catch (error) {
-      return ctx.app.emit("error", queryGoodsListError, ctx);
+      return ctx.app.emit("error", queryTagListError, ctx);
     }
   }
 }
-module.exports = new GoodsController();
+module.exports = new TagController();
