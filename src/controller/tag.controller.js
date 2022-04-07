@@ -1,5 +1,3 @@
-const path = require("path");
-
 const {
   addTag,
   updateTag,
@@ -12,31 +10,9 @@ const {
   updateTagError,
   deleteTagError,
   queryTagListError,
-  fileUploadError,
-  upSupportedFileType,
 } = require("../constant/err.type");
 
 class TagController {
-  // 可抽离通用文件上传中间件
-  async upload(ctx, next) {
-    const { file } = ctx.request.files;
-    const fileTypes = ["image/jpeg", "image/png"];
-    if (file) {
-      if (!fileTypes.includes(file.type)) {
-        return ctx.app.emit("error", upSupportedFileType, ctx);
-      }
-      ctx.body = {
-        code: 0,
-        message: "图片上传成功",
-        result: {
-          goods_img: path.basename(file.path),
-        },
-      };
-    } else {
-      return ctx.app.emit("error", fileUploadError, ctx);
-    }
-  }
-
   async add(ctx, next) {
     try {
       const { updatedAt, createdAt, ...res } = await addTag(ctx.request.body);

@@ -17,10 +17,7 @@ class ArticleService {
       await article.setTags(tags);
       return "文章更新成功";
     } else {
-      const article = await Article.create({
-        author_id: user_id,
-        content,
-      });
+      const article = await Article.create({ content });
       await article.setTags(tags);
       return "新增文章成功";
     }

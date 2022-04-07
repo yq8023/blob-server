@@ -1,4 +1,9 @@
 # 一、项目初始化
 
-项目初始化 npm init -y
-git 初始化 git init
+### 快速开始
+
+**1.安装依赖：npm i**
+
+**2.初始化所有数据库表：node src/model/init.js**
+
+**3.项目运行：npm run dev**

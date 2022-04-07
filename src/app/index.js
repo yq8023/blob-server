@@ -26,6 +26,7 @@ app.use(KoaParameter(app));
 
 // 将upload文件夹作为静态服务器
 app.use(KoaStatic(path.join(__dirname, "../upload")));
+
 // 注册路由
 app.use(router.routes()).use(router.allowedMethods());
 

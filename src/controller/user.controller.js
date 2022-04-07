@@ -59,10 +59,6 @@ class UserController {
       ctx.app.emit("error", updateUserInfoError, ctx);
     }
   }
-
-  async query(ctx, next) {
-    ctx.body = "查询用户!";
-  }
 }
 
 module.exports = new UserController();

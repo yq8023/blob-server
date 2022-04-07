@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 const seq = require("../db/seq");
 
-const User = seq.define("blob_user", {
+const User = seq.define("user", {
   // id 会被sequelize自动创建
   username: {
     type: DataTypes.STRING,
@@ -14,6 +14,14 @@ const User = seq.define("blob_user", {
     type: DataTypes.CHAR(64),
     allowNull: false,
     comment: "密码",
+  },
+  avatar: {
+    type: DataTypes.STRING,
+    comment: "头像",
+  },
+  description: {
+    type: DataTypes.STRING,
+    comment: "个人信息",
   },
 });
 
