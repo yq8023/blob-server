@@ -2,6 +2,7 @@ const path = require("path");
 
 const Koa = require("koa");
 const KoaBody = require("koa-body");
+const cors = require("koa2-cors");
 const KoaStatic = require("koa-static");
 const KoaParameter = require("koa-parameter");
 
@@ -11,6 +12,8 @@ const errHandler = require("./errHandler");
 const router = require("../router");
 
 const app = new Koa();
+
+app.use(cors({ credentials: true }));
 
 app.use(
   KoaBody({

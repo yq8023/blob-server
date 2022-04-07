@@ -14,7 +14,6 @@ module.exports = {
     message: "用户注册错误",
     result: "",
   },
-
   loginError: {
     code: 10004,
     message: "账号或者密码错误",
@@ -35,9 +34,9 @@ module.exports = {
     message: "无效的token",
     result: "",
   },
-  notHaveAdminPermission: {
+  notPermissionRequest: {
     code: 10103,
-    message: "没有管理员权限",
+    message: "未授权的请求",
     result: "",
   },
 

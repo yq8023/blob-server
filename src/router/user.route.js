@@ -10,7 +10,12 @@ const {
 const { auth } = require("../middleware/auth.middleware");
 const { ImgUpload } = require("../middleware/common/upload.middleware");
 
-const { register, login, update } = require("../controller/user.controller");
+const {
+  register,
+  login,
+  update,
+  getInfome,
+} = require("../controller/user.controller");
 
 const userRouter = new Router({ prefix: "/user" });
 
@@ -22,6 +27,8 @@ userRouter.post(
   cryptPassword,
   register
 );
+
+userRouter.get("/me", auth, getInfome);
 
 userRouter.post("/login", verifyLogin, login);
 

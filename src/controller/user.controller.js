@@ -8,6 +8,7 @@ const {
 const {
   userRegisterError,
   updateUserInfoError,
+  loginError,
 } = require("../constant/err.type");
 
 const { JWT_SECRET } = require("../config/config.default");
@@ -19,8 +20,7 @@ class UserController {
       const res = await createUser(username, password);
       ctx.body = res + " : " + username;
     } catch (error) {
-      console.log(error);
-      ctx.app.emit("error", userRegisterError);
+      ctx.app.emit("error", userRegisterError, ctx);
     }
   }
 
@@ -31,16 +31,18 @@ class UserController {
       const res = await getUserInfo({ username });
 
       const { password, ...userInfo } = res.dataValues;
+      const token = jwt.sign(userInfo, JWT_SECRET, { expiresIn: "1d" });
+      ctx.cookies.set("token", token, {
+        httpOnly: false,
+      });
 
       ctx.body = {
         code: 0,
         message: "用户登录成功",
-        result: {
-          token: jwt.sign(userInfo, JWT_SECRET, { expiresIn: "1d" }),
-        },
+        result: "",
       };
     } catch (error) {
-      console.log(error);
+      ctx.app.emit("error", loginError, ctx);
     }
   }
 
@@ -58,6 +60,15 @@ class UserController {
     } else {
       ctx.app.emit("error", updateUserInfoError, ctx);
     }
+  }
+
+  async getInfome(ctx, next) {
+    const user = ctx.state.user;
+    ctx.body = {
+      code: 0,
+      message: "查询用户信息成功",
+      result: user,
+    };
   }
 }
 
