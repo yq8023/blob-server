@@ -1,5 +1,10 @@
 const User = require("../model/user.model");
 
+const getPublicUserInfo = (userInfo) => {
+  const { password, createdAt, updatedAt, ...otherInfo } = userInfo;
+  return otherInfo;
+};
+
 class UserService {
   async createUser(username, password) {
     const res = await User.create({ username, password });
@@ -7,12 +12,11 @@ class UserService {
   }
   async getUserInfo({ id, username, password }) {
     const res = await User.findOne({
-      attributes: ["id", "username", "password"],
       where: arguments[0],
     });
-    return res;
+    return getPublicUserInfo(res.dataValues);
   }
-  async updateUserInfo(id, { username, password }) {
+  async updateUserInfo(id, updateObj) {
     const res = await User.update(arguments[1], {
       where: { id },
     });

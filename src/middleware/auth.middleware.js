@@ -5,13 +5,17 @@ const {
   jsonWebTokenError,
 } = require("../constant/err.type");
 
+const { getUserInfo } = require("../service/user.service");
+
 const auth = async (ctx, next) => {
   const { authorization = "" } = ctx.request.header;
   const token = authorization.replace("Bearer ", "");
 
   try {
     const decode = jwt.verify(token, JWT_SECRET);
-    ctx.state.user = decode;
+    const user = await getUserInfo({ id: decode.id });
+
+    ctx.state.user = user;
   } catch (error) {
     switch (error.name) {
       case "TokenExpiredError":

@@ -15,13 +15,21 @@ const User = seq.define("user", {
     allowNull: false,
     comment: "密码",
   },
-  avatar: {
+  motto: {
     type: DataTypes.STRING,
-    comment: "头像",
+    comment: "座右铭",
   },
-  description: {
+  blob_title: {
     type: DataTypes.STRING,
-    comment: "个人信息",
+    comment: "博客标题",
+  },
+  blob_avatar: {
+    type: DataTypes.STRING,
+    comment: "博客头像",
+  },
+  blob_description: {
+    type: DataTypes.STRING,
+    comment: "博客描述信息",
   },
 });
 

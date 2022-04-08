@@ -39,7 +39,9 @@ class UserController {
       ctx.body = {
         code: 0,
         message: "用户登录成功",
-        result: "",
+        result: {
+          token: token,
+        },
       };
     } catch (error) {
       ctx.app.emit("error", loginError, ctx);
@@ -63,11 +65,11 @@ class UserController {
   }
 
   async getInfome(ctx, next) {
-    const user = ctx.state.user;
+    const { iat, exp, ...UserInfo } = ctx.state.user;
     ctx.body = {
       code: 0,
       message: "查询用户信息成功",
-      result: user,
+      result: UserInfo,
     };
   }
 }
