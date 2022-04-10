@@ -8,10 +8,9 @@ const {
 class ArticleController {
   async addArticle(ctx, next) {
     try {
-      const user_id = ctx.state.user.id;
       const article = ctx.request.body;
 
-      const msg = await createOrUpdate(user_id, article);
+      const msg = await createOrUpdate(article);
       ctx.body = {
         code: 0,
         message: msg,

@@ -51,7 +51,6 @@ const cryptPassword = async (ctx, next) => {
 
 const verifyLogin = async (ctx, next) => {
   const { username, password } = ctx.request.body;
-
   try {
     const res = await getUserInfo({ username });
     // 查询用户

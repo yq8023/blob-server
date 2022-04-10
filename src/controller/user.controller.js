@@ -30,8 +30,9 @@ class UserController {
     try {
       const res = await getUserInfo({ username });
 
-      const { password, ...userInfo } = res.dataValues;
-      const token = jwt.sign(userInfo, JWT_SECRET, { expiresIn: "1d" });
+      const { password, ...userInfo } = res;
+
+      const token = jwt.sign(userInfo, JWT_SECRET, { expiresIn: "15d" });
       ctx.cookies.set("token", token, {
         httpOnly: false,
       });

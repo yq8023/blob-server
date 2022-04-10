@@ -1,4 +1,5 @@
 const Tag = require("../model/tag.model");
+const Article = require("../model/article.model");
 
 class TagService {
   async addTag(tag) {
@@ -18,6 +19,12 @@ class TagService {
     const { count, rows } = await Tag.findAndCountAll({
       offset: (pageNum - 1) * pageSize,
       limit: pageSize * 1,
+      include: [
+        {
+          model: Article,
+          through: { attributes: [] },
+        },
+      ],
     });
     return {
       pageNum,

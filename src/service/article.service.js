@@ -7,17 +7,17 @@ class ArticleService {
     ArticleTag.associate();
   }
 
-  async createOrUpdate(user_id, article) {
-    const { id, content, tag_ids } = article;
+  async createOrUpdate(article) {
+    const { id, tag_ids, ...other } = article;
     const tags = await Tag.findAll({ where: { id: tag_ids } });
 
     if (id) {
       const article = await Article.findByPk(id);
-      await article.update({ content });
+      await article.update({ ...other });
       await article.setTags(tags);
       return "文章更新成功";
     } else {
-      const article = await Article.create({ content });
+      const article = await Article.create({ ...other });
       await article.setTags(tags);
       return "新增文章成功";
     }
