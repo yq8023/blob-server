@@ -9,6 +9,10 @@ const Tag = seq.define("tag", {
     unique: true,
     comment: "标签名称",
   },
+  tag_color: {
+    type: DataTypes.STRING,
+    comment: "标签颜色",
+  },
 });
 
 // Tag.sync({ force: true });

@@ -30,7 +30,7 @@ class ArticleService {
       include: [
         {
           model: Tag,
-          attributes: ["id", "tag_name"],
+          attributes: ["id", "tag_name", "tag_color"],
           through: { attributes: [] },
         },
       ],
