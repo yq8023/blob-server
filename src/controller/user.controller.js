@@ -73,6 +73,15 @@ class UserController {
       result: UserInfo,
     };
   }
+
+  async getBlogInfo(ctx, next) {
+    const res = await getUserInfo({ id: 1 });
+    ctx.body = {
+      code: 0,
+      message: "查询用户信息成功",
+      result: res,
+    };
+  }
 }
 
 module.exports = new UserController();

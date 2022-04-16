@@ -15,6 +15,7 @@ const {
   login,
   update,
   getInfome,
+  getBlogInfo,
 } = require("../controller/user.controller");
 
 const userRouter = new Router({ prefix: "/user" });
@@ -29,11 +30,9 @@ userRouter.post(
 );
 
 userRouter.get("/me", auth, getInfome);
-
+userRouter.get("/getBlogInfo", getBlogInfo);
 userRouter.post("/login", verifyLogin, login);
-
 userRouter.post("/update", auth, cryptPassword, update);
-
 userRouter.post("/upload", auth, ImgUpload);
 
 module.exports = userRouter;

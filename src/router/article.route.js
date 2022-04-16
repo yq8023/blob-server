@@ -11,7 +11,7 @@ const { ImgUpload } = require("../middleware/common/upload.middleware");
 
 const articleRouter = new Router({ prefix: "/article" });
 
-articleRouter.get("/list", auth, list);
+articleRouter.get("/list", list);
 
 articleRouter.post("/add", auth, addArticle);
 articleRouter.post("/img_upload", auth, ImgUpload);

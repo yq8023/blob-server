@@ -40,6 +40,12 @@ class TagService {
         {
           model: Article,
           through: { attributes: [] },
+          include: [
+            {
+              model: Tag,
+              through: { attributes: [] },
+            },
+          ],
         },
       ],
     });
